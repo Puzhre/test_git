@@ -10,13 +10,13 @@ width = img.shape[1]
 #创建一幅图像， uint8是专门用于存储各种图像的（包括RGB，灰度图像等），范围是从0–255
 result_1 = np.zeros((height, width), np.uint8)
 
-# 线性
+#线性
 for i in range(height):
     for j in range(width):
         gray = -(img[i, j])+255
         result_1[i, j] = np.uint8(gray)
 
-# 分段线性
+#分段线性
 result_2 = np.zeros((height, width), np.uint8)
 result_2_1 = np.zeros((height, width), np.uint8)
 
@@ -33,7 +33,6 @@ img=np.double(img)
 result_3=np.log10(img+1)
 result_3= np.uint8(result_3*255/np.max(result_3))
 
-# 显示图形
 plt.figure(num='comparison')
 titles = ['原图像', '线性','分段线性','非线性']
 images = [img, result_1,result_2_1,result_3 ]
