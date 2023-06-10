@@ -1,12 +1,11 @@
 import cv2 as cv
 import numpy as np
-import matplotlib.pyplot as plt
 import math
+from skimage.metrics import structural_similarity as ssim
+import warnings
+warnings.filterwarnings('ignore')
 
 def DPCM(yBuffer, dBuffer, re, w, h, bitnum):
-    # yBuffer raw buffer
-    # dBuffer x buffer
-    # rebuildBuffer reconstruct buffer
     x = 2 ** (8 - bitnum)
     y = 2 ** (9 - bitnum)
     flow_upper_bound = 2 ** bitnum - 1
@@ -24,7 +23,6 @@ def DPCM(yBuffer, dBuffer, re, w, h, bitnum):
             dBuffer[i * w + j] = tmp
             invPredErr = dBuffer[i * w + j] * y - 255
             re[i * w + j] = invPredErr + prediction
-
 
 Img = cv.imread(r'lenna.png')
 Img = cv.cvtColor(Img, cv.COLOR_BGR2GRAY)
@@ -72,5 +70,9 @@ def psnr(img1, img2):
     PIXEL_MAX = 1
     return 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
 
-print(psnr(Img,rebuildBuffer2))
+psnr=psnr(Img,rebuildBuffer2)
+ssim=ssim(Img,rebuildBuffer2)
+print('PSNR：{}，SSIM：{}'.format(psnr, ssim))
+#PSNR：14.681822577587656，SSIM：0.2423115862992833
+
 

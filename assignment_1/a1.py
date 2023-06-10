@@ -1,6 +1,9 @@
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+import warnings
+warnings.filterwarnings('ignore')
+
 img=cv2.imread("lenna.png",0)
 plt.rcParams['font.sans-serif'] = ['Heiti TC']
 
@@ -41,6 +44,7 @@ for i in range(4):
     plt.imshow(images[i], 'gray')
     plt.title(titles[i])
     plt.xticks([]), plt.yticks([])
+plt.savefig('a1.png')
 plt.show()
 
 

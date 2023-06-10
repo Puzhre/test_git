@@ -51,8 +51,11 @@ if __name__=='__main__':
     img3.Process()
 
     cv2.imshow("src", src)
+    cv2.imwrite("a2_1.png", img1.dst)
     cv2.imshow("img1", img1.dst)
+    cv2.imwrite("a2_2.png", img2.dst)
     cv2.imshow("img2", img2.dst)
+    cv2.imwrite("a2_3.png", img3.dst)
     cv2.imshow("img3", img3.dst)
 
     cv2.waitKey(0)

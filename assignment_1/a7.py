@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
-def OTSU(img_array):            #传入的参数为ndarray形式
+def OTSU(img_array):
     height = img_array.shape[0]
     width = img_array.shape[1]
     count_pixel = np.zeros(256)
@@ -12,11 +12,12 @@ def OTSU(img_array):            #传入的参数为ndarray形式
         for j in range(width):
             count_pixel[int(img_array[i][j])] += 1
 
-    fig = plt.figure()        #通过绘制直方图可以观察像素的分布情况
+    fig = plt.figure()#通过绘制直方图可以观察像素的分布情况
     ax = fig.add_subplot(111)
     ax.bar(np.linspace(0, 255, 256), count_pixel)
     ax.set_xlabel("pixels")
     ax.set_ylabel("num")
+    plt.savefig('a7_1.png')
     plt.show()
 
     max_variance = 0.0
@@ -51,6 +52,7 @@ best_thresold=OTSU(img)
 ret2, th2 = cv2.threshold(img, best_thresold, 255, cv2.THRESH_BINARY)
 print(ret2)
 plt.imshow(th2,cmap=cm.gray)
+plt.savefig('a7_2.png')
 plt.show()
 
 def diedai(img):
@@ -93,4 +95,5 @@ yvzhi=diedai(img)
 ret1, th1 = cv2.threshold(img, yvzhi, 255, cv2.THRESH_BINARY)
 print(ret1)
 plt.imshow(th1,cmap=cm.gray)
+plt.savefig('a7_3.png')
 plt.show()
